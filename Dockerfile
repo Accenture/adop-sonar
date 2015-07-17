@@ -13,4 +13,6 @@ COPY sonar.sh plugins.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/* ; \
     /usr/local/bin/plugins.sh ${SONARQUBE_PLUGINS_DIR}/plugins.txt
 
+VOLUME ["/opt/sonarqube/extensions/plugins/"]
+
 ENTRYPOINT ["/usr/local/bin/sonar.sh"]
