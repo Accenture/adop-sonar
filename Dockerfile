@@ -10,8 +10,8 @@ ENV SONARQUBE_PLUGINS_DIR=/opt/sonarqube/extensions/default/plugins \
 COPY resources/plugins.txt ${SONARQUBE_PLUGINS_DIR}/
 COPY sonar.sh plugins.sh /usr/local/bin/
 
-RUN chmod +x /usr/local/bin/*
-RUN /usr/local/bin/plugins.sh ${SONARQUBE_PLUGINS_DIR}/plugins.txt
+RUN chmod +x /usr/local/bin/* & \ 
+    /usr/local/bin/plugins.sh ${SONARQUBE_PLUGINS_DIR}/plugins.txt
 
 VOLUME ["/opt/sonarqube/extensions/plugins/", "/opt/sonarqube/logs/"]
 
