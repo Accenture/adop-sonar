@@ -36,8 +36,8 @@ A standard MySQL database can be started with the following.
       $ docker run -td -p 3306:3306 -v /data/sonar:/var/lib/mysql  \
             -e MYSQL_USERNAME=sonar \
             -e MYSQL_PASSWORD=sonar \
-            -e MYSQL_DATABASE=sonar a
-            -e MYSQL_ROOT_PASSWORD=my-secret-pw mysql:5.7
+            -e MYSQL_DATABASE=sonar \
+            -e MYSQL_ROOT_PASSWORD=sonar mysql:5.7
 
 > [MySQL/Docker/Documentation](https://registry.hub.docker.com/_/mysql/)
 
@@ -58,3 +58,8 @@ The image reads the following LDAP environment variables:
  * ldap.group.idAttribute=${LDAP_GROUP_ID_ATTRIBUTE} - user group id attribute, e.g. cn
 
 > [SonarQube/plugin/LDAP/Documentation](http://redirect.sonarsource.com/plugins/ldap.html)
+
+## Other configuration variables
+
+ * SONARQUBE_WEB_CONTEXT - sonar web context e.g. /sonar
+ * SONARQUBE_SERVER_BASE - sonar base e.g. http//domain.com/sonar
