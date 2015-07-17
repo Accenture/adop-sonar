@@ -61,5 +61,5 @@ The image reads the following LDAP environment variables:
 
 ## Other configuration variables
 
- * SONARQUBE_WEB_CONTEXT - sonar web context e.g. /sonar
- * SONARQUBE_SERVER_BASE - sonar base e.g. http//domain.com/sonar
+ * `SONARQUBE_WEB_CONTEXT` - sonar web context e.g. /sonar
+ * `SONARQUBE_SERVER_BASE` - sonar base e.g. http//domain.com/sonar
