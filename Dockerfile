@@ -9,7 +9,7 @@ ENV SONARQUBE_PLUGINS_DIR=/opt/sonarqube/extensions/default/plugins \
     ADOP_LDAP_ENABLED=true
 
 COPY resources/plugins.txt ${SONARQUBE_PLUGINS_DIR}/
-COPY sonar.sh plugins.sh /usr/local/bin/
+COPY resources/sonar.sh resources/plugins.sh /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/* 
 RUN /usr/local/bin/plugins.sh ${SONARQUBE_PLUGINS_DIR}/plugins.txt
