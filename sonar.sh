@@ -10,7 +10,7 @@ mv ${SONARQUBE_PLUGINS_DIR}/* /opt/sonarqube/extensions/plugins
 
 SONAR_ARGUMENTS="-Dsonar.web.context=${SONARQUBE_WEB_CONTEXT} \
   -Dsonar.core.serverBaseURL=${SONARQUBE_SERVER_BASE} \
-  -dsonar.forceAuthentication=${SONARQUBE_FORCE_AUTHENTICATION}"
+  -Dsonar.forceAuthentication=${SONARQUBE_FORCE_AUTHENTICATION}"
 
 if [ "$ADOP_LDAP_ENABLED" = true ]
   then
