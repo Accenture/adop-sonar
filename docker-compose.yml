@@ -9,12 +9,12 @@ sonar:
    - SONARQUBE_JDBC_USERNAME=sonar
    - SONARQUBE_JDBC_PASSWORD=sonar
    - SONARQUBE_JDBC_URL=jdbc:mysql://mysql:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true 
- mysql:
+mysql:
  image: mysql:5.7
  environment:
   - MYSQL_USER=sonar
   - MYSQL_PASSWORD=sonar
   - MYSQL_DATABASE=sonar
   - MYSQL_ROOT_PASSWORD=sonar
-  ports:
-   - "3306:3306"
+ ports:
+  - "3306:3306"
