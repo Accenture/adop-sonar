@@ -5,6 +5,7 @@ MAINTAINER Robert Northard, <robert.a.northard>
 ENV SONARQUBE_PLUGINS_DIR=/opt/sonarqube/extensions/default/plugins \
     SONARQUBE_SERVER_BASE="http://localhost:9000" \
     SONARQUBE_WEB_CONTEXT="/sonar" \
+    SONARQUBE_FORCE_AUTHENTICATION true \
     ADOP_LDAP_ENABLED=true
 
 COPY resources/plugins.txt ${SONARQUBE_PLUGINS_DIR}/
