@@ -6,7 +6,9 @@
 set -e
 
 # Copy SonarQube plugins.
-mv ${SONARQUBE_PLUGINS_DIR}/* /opt/sonarqube/extensions/plugins
+if [ "$(ls -A ${SONARQUBE_PLUGINS_DIR})" ]; then
+    mv ${SONARQUBE_PLUGINS_DIR}/* /opt/sonarqube/extensions/plugins
+fi
 
 SONAR_ARGUMENTS="-Dsonar.web.context=${SONARQUBE_WEB_CONTEXT} \
   -Dsonar.core.serverBaseURL=${SONARQUBE_SERVER_BASE} \
