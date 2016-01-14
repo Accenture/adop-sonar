@@ -2,7 +2,7 @@ FROM sonarqube:4.5.4
 
 MAINTAINER Robert Northard, <robert.a.northard>
 
-ENV SONARQUBE_PLUGINS_DIR=/opt/sonarqube/extensions/default/plugins \
+ENV SONARQUBE_PLUGINS_DIR=/opt/sonarqube/default/extensions/plugins \
     SONARQUBE_SERVER_BASE="http://localhost:9000" \
     SONARQUBE_WEB_CONTEXT="/sonar" \
     SONARQUBE_FORCE_AUTHENTICATION=true \
