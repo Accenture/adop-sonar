@@ -60,6 +60,12 @@ The image reads the following LDAP environment variables:
 
  * `SONARQUBE_WEB_CONTEXT` - sonar web context e.g. /sonar
  * `SONARQUBE_SERVER_BASE` - sonar base e.g. http//domain.com/sonar
+ * `SONARQUBE_JMX_ENABLED` - Enable JMX. Allowed values are true or false. Default : `false`
+ * `SONARQUBE_JMX_AUTH` - Enable Authentication on JMX Connections when JMX is enabled. Allowed values are true or false. Default : `false`
+ * `SONARQUBE_JMX_HOST` - Hostname or IP address of the host to which JMX clients connect. Default : `localhost`
+ * `SONARQUBE_JMX_PORT` - JMX Port. Default : `10433`
+ * `SONARQUBE_JMX_USER` - Set username when authentication for JMX is enabled. Default: `admin`
+ * `SONARQUBE_JMX_USER_PASSWORD` - Set password for JMX user. Default: `adminpassword`
 
 # License
 Please view [licence information](LICENCE.md) for the software contained on this image.
