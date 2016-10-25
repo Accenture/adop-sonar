@@ -70,5 +70,10 @@ if [ "$SONARQUBE_JMX_ENABLED" = true ]
   export SONARQUBE_WEB_JVM_OPTS
 fi
 
+# Get access logs on STDOUT
+if [ ! -e "/opt/sonarqube/logs/access.log" ]
+  then
+  ln -s /dev/stdout /opt/sonarqube/logs/access.log
+fi
 # Start SonarQube
 ./bin/run.sh ${SONAR_ARGUMENTS}
