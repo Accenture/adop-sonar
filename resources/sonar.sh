@@ -46,5 +46,34 @@ if [ "$ADOP_LDAP_ENABLED" = true ]
     -Dldap.group.idAttribute=${LDAP_GROUP_ID_ATTRIBUTE}"
 fi
 
+if [ "$SONARQUBE_JMX_ENABLED" = true ]
+  then
+  SONARQUBE_WEB_JVM_OPTS+="-Dcom.sun.management.jmxremote \
+    -Dcom.sun.management.jmxremote.ssl=false \
+    -Dcom.sun.management.jmxremote.local.only=false \
+    -Djava.rmi.server.hostname=${SONARQUBE_JMX_HOST:-localhost} \
+    -Dcom.sun.management.jmxremote.port=${SONARQUBE_JMX_PORT:-10433} \
+    -Dcom.sun.management.jmxremote.rmi.port=${SONARQUBE_JMX_PORT:-10433} "
+  if [ "$SONARQUBE_JMX_AUTH" = true ]
+  then
+        SONARQUBE_WEB_JVM_OPTS+=" -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.password.file=/opt/sonarqube/conf/jmxremote.password -Dcom.sun.management.jmxremote.access.file=/opt/sonarqube/conf/jmxremote.access"
+	# Create JMX password and access file
+	echo "${SONARQUBE_JMX_USER:-admin} readwrite \\" > /opt/sonarqube/conf/jmxremote.access
+	echo '	create javax.management.monitor.*,javax.management.timer.*,com.sun.management.*,com.oracle.jrockit.* \' >> /opt/sonarqube/conf/jmxremote.access
+	echo '	unregister' >> /opt/sonarqube/conf/jmxremote.access
+
+	echo "${SONARQUBE_JMX_USER:-admin} ${SONARQUBE_JMX_USER_PASSWORD:-adminpassword}" > /opt/sonarqube/conf/jmxremote.password
+        chmod 600 /opt/sonarqube/conf/jmxremote.access /opt/sonarqube/conf/jmxremote.password
+  else
+	SONARQUBE_WEB_JVM_OPTS+=" -Dcom.sun.management.jmxremote.authenticate=false "
+  fi
+  export SONARQUBE_WEB_JVM_OPTS
+fi
+
+# Get access logs on STDOUT
+if [ ! -e "/opt/sonarqube/logs/access.log" ]
+  then
+  ln -s /dev/stdout /opt/sonarqube/logs/access.log
+fi
 # Start SonarQube
 ./bin/run.sh ${SONAR_ARGUMENTS}
