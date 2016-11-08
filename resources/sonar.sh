@@ -19,6 +19,7 @@ if [ "$(ls -A ${SONARQUBE_PLUGINS_DIR})" ]; then
             set +e
             existing_plugin_name=$(ls -A /opt/sonarqube/extensions/plugins/${plugin_base_name}-*.jar 2> /dev/null)
             set -e
+            if [[ "$ADOP_LDAP_ENABLED" != "true" && "${plugin_name}" == *ldap* ]]; then continue ; fi
             if [ -f "${existing_plugin_name}" ]; then mv ${existing_plugin_name} /opt/sonarqube/extensions/plugins/backup/; fi
             mv ${plugin_path} /opt/sonarqube/extensions/plugins/
             existing_plugin_name=""
