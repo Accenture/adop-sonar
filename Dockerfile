@@ -11,6 +11,7 @@ ENV SONARQUBE_PLUGINS_DIR=/opt/sonarqube/default/extensions/plugins \
 
 COPY resources/plugins.txt ${SONARQUBE_PLUGINS_DIR}/
 COPY resources/sonar.sh resources/plugins.sh /usr/local/bin/
+COPY resources/drivers/oracle/ojdbc6.jar /opt/sonarqube/extensions/jdbc-driver/oracle
 
 RUN chmod +x /usr/local/bin/* 
 RUN /usr/local/bin/plugins.sh ${SONARQUBE_PLUGINS_DIR}/plugins.txt
