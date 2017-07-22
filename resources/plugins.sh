@@ -7,7 +7,7 @@ set -e
 
 mkdir -p ${SONARQUBE_PLUGINS_DIR}
 
-while read plugin; do
+while IFS= read plugin || [[ -n "$plugin" ]]; do
     fullname=$(basename "$plugin")
     extension="${fullname##*.}"
     filename="${fullname%.*}"
