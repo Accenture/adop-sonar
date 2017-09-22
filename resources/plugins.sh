@@ -20,7 +20,7 @@ while read plugin; do
                unzip -j /tmp/${fullname} "*${filename}.jar"
                rm -rf /tmp/${fullname}
                ;;
-        *) "ERROR: Unable to download ${fullname} doe to unsupported download url."
+        *) echo "ERROR: Unable to download ${fullname} due to unsupported download url."
                ;;
     esac
 done  < $1
