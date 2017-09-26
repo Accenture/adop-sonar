@@ -11,6 +11,7 @@ while read plugin; do
     fullname=$(basename "$plugin")
     extension="${fullname##*.}"
     filename="${fullname%.*}"
+    [[ -z "$filename" ]] && continue
     echo "Downloading ${fullname}"
     case ${extension} in 
         'jar') curl -s -L -f ${plugin} -o ${SONARQUBE_PLUGINS_DIR}/${fullname}
