@@ -1,4 +1,4 @@
-FROM sonarqube:5.6.3
+FROM sonarqube:6.7.2
 
 MAINTAINER Robert Northard, <robert.a.northard>
 
@@ -12,7 +12,7 @@ ENV SONARQUBE_PLUGINS_DIR=/opt/sonarqube/default/extensions/plugins \
 COPY resources/plugins.txt ${SONARQUBE_PLUGINS_DIR}/
 COPY resources/sonar.sh resources/plugins.sh /usr/local/bin/
 
-RUN chmod +x /usr/local/bin/* 
+RUN chmod +x /usr/local/bin/*
 RUN /usr/local/bin/plugins.sh ${SONARQUBE_PLUGINS_DIR}/plugins.txt
 
 VOLUME ["/opt/sonarqube/logs/"]

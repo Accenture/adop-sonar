@@ -1,0 +1,5 @@
+# Declare files that will always have LF line endings on checkout.
+*.sh text eol=lf
+*.txt text eol=lf
+*.yml text eol=lf
+Dockerfile text eol=lf
