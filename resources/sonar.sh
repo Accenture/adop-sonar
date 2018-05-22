@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash -x
 # FROM sonarqube
 # COPY resources/plugins.txt ${PLUGINS_DIR}/plugins.txt
 # RUN /usr/local/bin/plugins.sh ${PLUGINS_DIR}/plugins.txt
@@ -35,18 +35,17 @@ if [ "$ADOP_LDAP_ENABLED" = true ]
   then
   SONAR_ARGUMENTS+=" -Dsonar.security.realm=LDAP \
     -Dsonar.security.savePassword=false \
-    -Dldap.url=${LDAP_URL} \
-    -Dldap.bindDn=${LDAP_BIND_DN} \
+    -Dldap.url="${LDAP_URL}" \
+    -Dldap.bindDn="$LDAP_BIND_DN" \
     -Dldap.bindPassword=${LDAP_BIND_PASSWORD} \
     -Dldap.user.baseDn=${LDAP_USER_BASE_DN} \
-    -Dldap.user.request=${LDAP_USER_REQUEST} \
-    -Dldap.user.realNameAttribute=${LDAP_USER_REAL_NAME_ATTRIBUTE} \
-    -Dldap.user.emailAttribute=${LDAP_USER_EMAIL_ATTRIBUTE} \
+    -Dldap.user.request=${LDAP_USER_REQUEST:-"(uid={0})"} \
+    -Dldap.user.realNameAttribute=${LDAP_USER_REAL_NAME_ATTRIBUTE:-"cn"} \
+    -Dldap.user.emailAttribute=${LDAP_USER_EMAIL_ATTRIBUTE:-"mail"} \
     -Dldap.group.baseDn=${LDAP_GROUP_BASE_DN} \
-    -Dldap.group.request=${LDAP_GROUP_REQUEST} \
-    -Dldap.group.idAttribute=${LDAP_GROUP_ID_ATTRIBUTE}"
+    -Dldap.group.request=${LDAP_GROUP_REQUEST:-"(&(objectClass=groupOfUniqueNames)(uniqueMember={dn}))"} \
+    -Dldap.group.idAttribute=${LDAP_GROUP_ID_ATTRIBUTE:-"cn"}"
 fi
-
 if [ "$SONARQUBE_JMX_ENABLED" = true ]
   then
   SONARQUBE_WEB_JVM_OPTS+="-Dcom.sun.management.jmxremote \
@@ -77,4 +76,4 @@ if [ ! -e "/opt/sonarqube/logs/access.log" ]
   ln -s /dev/stdout /opt/sonarqube/logs/access.log
 fi
 # Start SonarQube
-./bin/run.sh ${SONAR_ARGUMENTS}
+/bin/bash -c "./bin/run.sh ${SONAR_ARGUMENTS}"

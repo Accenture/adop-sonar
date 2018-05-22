@@ -4,13 +4,21 @@ sonar:
    - "9000:9000"
   links: 
    - mysql:mysql
+  container_name: sonar
   environment:
-   - ADOP_LDAP_ENABLED=false
+   - ADOP_LDAP_ENABLED=true
+   - LDAP_USER_REQUEST="(uid={0})"
+   - LDAP_USER_REAL_NAME_ATTRIBUTE=cn
+   - LDAP_USER_EMAIL_ATTRIBUTE=mail
+   - LDAP_GROUP_REQUEST="(&(objectClass=groupOfUniqueNames)(uniqueMember={dn}))"
+   - LDAP_GROUP_ID_ATTRIBUTE=cn
+   - SONARQUBE_WEB_CONTEXT=/
    - SONARQUBE_JDBC_USERNAME=sonar
    - SONARQUBE_JDBC_PASSWORD=sonar
    - SONARQUBE_JDBC_URL=jdbc:mysql://mysql:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true 
 mysql:
  image: mysql:5.7
+ container_name: mysql
  environment:
   - MYSQL_USER=sonar
   - MYSQL_PASSWORD=sonar
