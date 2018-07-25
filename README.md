@@ -56,6 +56,19 @@ The image reads the following LDAP environment variables:
 
 > [SonarQube/plugin/LDAP/Documentation](http://redirect.sonarsource.com/plugins/ldap.html)
 
+## SSO Authentication
+
+By default, the image will disable SSO authentication, setting the `SSO_ENABLED` environment variable to `True` will enable SSO authentication.
+This images read the following SSO environment variables:
+
+ * `SSO_LOGIN_HEADER` - Name of the header to get the user login. Only alphanumeric, '.' and '@' characters are allowed.
+ * `SSO_NAME_HEADER` - Name of the header to get the user name.
+ * `SSO_EMAIL_HEADER` - Name of the header to get the user email (optional).
+ * `SSO_GROUP_HEADER` - Name of the header to get the list of user groups, separated by comma (optional).
+ * `SSO_REFRESH_INTERVAL` - Interval used to know when to refresh name, email and groups (optional).
+
+> [HTTP Header authentication](https://docs.sonarqube.org/display/SONAR/HTTP+headers+authentication), [sonar.properties file](https://github.com/SonarSource/sonarqube/blob/branch-6.7/sonar-application/src/main/assembly/conf/sonar.properties#L150-L173)
+
 ## Other configuration variables
 
  * `SONARQUBE_WEB_CONTEXT` - sonar web context e.g. /sonar
