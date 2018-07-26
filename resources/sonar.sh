@@ -76,5 +76,8 @@ if [ ! -e "/opt/sonarqube/logs/access.log" ]
   then
   ln -s /dev/stdout /opt/sonarqube/logs/access.log
 fi
+
+dockerize -template /tmp/sonar.properties.tmpl:/opt/sonarqube/conf/sonar.properties
+
 # Start SonarQube
 ./bin/run.sh ${SONAR_ARGUMENTS}

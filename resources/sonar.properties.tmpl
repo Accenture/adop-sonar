@@ -1,0 +1,30 @@
+sonar.log.level={{ default .Env.SONAR_LOG_LEVEL "INFO" }}
+
+sonar.web.javaOpts=-Xmx{{ default .Env.SONAR_WEB_MAXIMUM_MEMORY "1g" }} \
+  -Xms{{ default .Env.SONAR_WEB_MINIMUM_MEMORY "256m" }} \
+  -XX:+HeapDumpOnOutOfMemoryError \
+  -Djava.net.preferIPv4Stack=true
+
+sonar.ce.javaOpts=-Xmx{{ default .Env.SONAR_CE_MAXIMUM_MEMORY "1g" }} \
+  -Xms{{ default .Env.SONAR_CE_MINIMUM_MEMORY "256m" }} \
+  -XX:+HeapDumpOnOutOfMemoryError \
+  -Djava.net.preferIPv4Stack=true
+
+sonar.search.javaOpts=-Xmx{{ default .Env.SONAR_ES_MAXIMUM_MEMORY "2g" }} \
+  -Xms{{ default .Env.SONAR_SE_MINIMUM_MEMORY "512m" }} \
+  -Xss{{ default .Env.SONAR_SE_LIMIT_MEMORY "1m" }} \
+  -Djava.net.preferIPv4Stack=true \
+  -XX:+UseParNewGC \
+  -XX:+UseConcMarkSweepGC \
+  -XX:CMSInitiatingOccupancyFraction=75 \
+  -XX:+UseCMSInitiatingOccupancyOnly \
+  -XX:+HeapDumpOnOutOfMemoryError
+
+{{ if (.Env.SSO_ENABLED) and eq .Env.SSO_ENABLED "True" }}
+sonar.web.sso.enable=true
+sonar.web.sso.loginHeader={{ .Env.SSO_LOGIN_HEADER }}
+sonar.web.sso.nameHeader={{ .Env.SSO_NAME_HEADER }}
+{{ if .Env.SSO_EMAIL_HEADER }}sonar.web.sso.emailHeader={{ .Env.SSO_EMAIL_HEADER }}{{ end }}
+{{ if .Env.SSO_GROUP_HEADER }}sonar.web.sso.groupsHeader={{ .Env.SSO_GROUP_HEADER }}{{ end }}
+{{ if .Env.SSO_REFRESH_INTERVAL }}sonar.web.sso.refreshIntervalInMinutes={{ .Env.SSO_REFRESH_INTERVAL }}{{ end }}
+{{ end }}
