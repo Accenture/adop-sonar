@@ -20,7 +20,7 @@ sonar.search.javaOpts=-Xmx{{ default .Env.SONAR_ES_MAXIMUM_MEMORY "2g" }} \
   -XX:+UseCMSInitiatingOccupancyOnly \
   -XX:+HeapDumpOnOutOfMemoryError
 
-{{ if eq .Env.SSO_ENABLED "True" }}
+{{ if (.Env.SSO_ENABLED) and eq .Env.SSO_ENABLED "True" }}
 sonar.web.sso.enable=true
 sonar.web.sso.loginHeader={{ .Env.SSO_LOGIN_HEADER }}
 sonar.web.sso.nameHeader={{ .Env.SSO_NAME_HEADER }}
