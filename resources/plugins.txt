@@ -4,7 +4,7 @@ https://binaries.sonarsource.com/Distribution/sonar-ldap-plugin/sonar-ldap-plugi
 https://github.com/SonarQubeCommunity/sonar-build-breaker/releases/download/1.1/sonar-build-breaker-plugin-1.1.jar
 http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/scm-activity/sonar-scm-activity-plugin/1.8/sonar-scm-activity-plugin-1.8.jar
 https://github.com/checkstyle/sonar-checkstyle/releases/download/4.11/checkstyle-sonar-plugin-4.11.jar
-http://central.maven.org/maven2/org/codehaus/sonar-plugins/css/sonar-css-plugin/3.1/sonar-css-plugin-3.1.jar
+https://repo1.maven.org/maven2/org/codehaus/sonar-plugins/css/sonar-css-plugin/3.1/sonar-css-plugin-3.1.jar
 http://downloads.sonarsource.com/plugins/org/codehaus/sonar-plugins/sonar-motion-chart-plugin/1.7/sonar-motion-chart-plugin-1.7.jar
 https://github.com/VinodAnandan/sonar-pitest/releases/download/v0.9/sonar-pitest-plugin-0.9.jar
 https://github.com/SonarQubeCommunity/sonar-pmd/releases/download/2.6/sonar-pmd-plugin-2.6.jar
